@@ -1,0 +1,9 @@
+@use "./variables.scss";
+@use "./normalize.scss";
+
+body {
+    margin: 0;
+    font-family: Rubik, sans-serif;
+    background: $color-bg;
+    color: $color-text;
+}
