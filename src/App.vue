@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { useSubscriptionStore } from './store/subscription'
-import data from '../public/subscribe.json'
-import Sidebar from './components/Sidebar.vue'
-import MainContent from './components/MainContent.vue'
+import data from '@/assets/subscribe.json'
+import Sidebar from '@/components/layout/Sidebar.vue'
+import MainContent from '@/components/layout/MainContent.vue'
 
 const store = useSubscriptionStore()
 
@@ -23,11 +23,13 @@ onMounted(() => {
 .layout {
   display: flex;
   min-height: 100vh;
+  overflow: auto;
 }
 
 @media (max-width: 768px) {
   .layout {
     flex-direction: column;
+    overflow: unset;
   }
 }
 </style>

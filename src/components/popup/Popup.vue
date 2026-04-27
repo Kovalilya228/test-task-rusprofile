@@ -4,7 +4,17 @@ const props = defineProps<{
   percent: number;
 }>();
 
-let isZeroPercent = computed(() => props.percent === 0)   
+const isZeroPercent = computed(() => props.percent === 0)
+
+const title = computed(() =>
+  isZeroPercent.value ? "No fun yet!" : "Are you sure?"
+)
+
+const description = computed(() =>
+  isZeroPercent.value
+    ? "You have no subscriptions on any site."
+    : `Please confirm that you want to unsubscribe from all and lose ${props.percent}% fun.`
+)
 
 const emit = defineEmits<{
   (e: "confirm"): void;
@@ -22,9 +32,9 @@ const emit = defineEmits<{
         </svg>
       </button>
 
-      <h3 class="modal__title">{{isZeroPercent ? "No fun yet!" : "Are you sure?"}}</h3>
+      <h3 class="modal__title">{{ title }}</h3>
 
-      <p class="modal__text">{{isZeroPercent ? "You have no subscriptions on any site." : `Please confirm that you want to unsubscribe from all and lose ${percent}% fun.`}}</p>
+      <p class="modal__text">{{ description }}</p>
 
       <div class="modal__actions">
         <button v-if="isZeroPercent" class="modal__button" @click="emit('cancel')">

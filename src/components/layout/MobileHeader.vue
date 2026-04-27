@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useSubscriptionStore } from "@/store/subscription";
-import FunBar from "./FunBar.vue";
+import FunBar from "@/components/ui/FunBar.vue";
 
 const store = useSubscriptionStore();
 
@@ -15,24 +15,6 @@ function handleClick() {
 
 <template>
   <header class="mobile-header">
-    <!-- <div class="mobile-header__top">
-      <div class="mobile-header__label">
-        FUN YOU GET
-      </div>
-    </div> -->
-
-    <!-- <div class="mobile-header__row">
-      <span class="mobile-header__percent">
-        {{ store.funPercent }}%
-      </span>
-
-      <div class="mobile-header__bar">
-        <div
-          class="mobile-header__fill"
-          :style="{ width: store.funPercent + '%' }"
-        />
-      </div>
-    </div> -->
     <div class="fun-container">
         <FunBar :percent="store.funPercent"/>
     </div>

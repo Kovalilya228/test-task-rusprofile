@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import { useSubscriptionStore } from "@/store/subscription";
-import type { Subscription } from "@/types/subscription";
+import { useSubscriptionStore } from "@/store/subscription"
+import type { Subscription } from "@/types/subscription"
 
 const props = defineProps<{
-  item: Subscription;
-}>();
+  item: Subscription
+}>()
 
-const store = useSubscriptionStore();
+const store = useSubscriptionStore()
 
 function handleClick() {
-  store.toggle(props.item.site);
+  store.toggle(props.item.site)
 }
 </script>
 
 <template>
   <div class="card">
-    <img class="card__image" :src="item.image" :alt="`${item.site} logo`">
+    <img class="card__image" :src="item.image" :alt="`${item.site} logo`" loading="lazy">
     <p class="card__title">{{ item.title }}</p>
 
     <button
@@ -47,9 +47,6 @@ function handleClick() {
   display: flex;
   flex-direction: column;
   gap: $space-md;
-  &__image {
-    //border: 1px solid $color-stroke;
-  }
   &__title {
     display: -webkit-box;
     -webkit-line-clamp: 2;

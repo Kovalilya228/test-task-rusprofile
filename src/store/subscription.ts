@@ -49,6 +49,14 @@ export const useSubscriptionStore = defineStore('subscription', () => {
         logState()
     }
 
+    function subscribeAll() {
+        items.value.forEach(i => {
+            i.subscribed = true
+        })
+
+        logState()
+    }
+
     function logState() {
         console.log(JSON.stringify(items.value.map(i => ({
             site: i.site,
@@ -64,5 +72,6 @@ export const useSubscriptionStore = defineStore('subscription', () => {
         setItems,
         toggle,
         unsubscribeAll,
+        subscribeAll,
     }
 })

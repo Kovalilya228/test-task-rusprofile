@@ -61,5 +61,7 @@ defineProps<{
   color: $color-orange;
   font-size: 16px;
   line-height: 16px;
+  min-width: 32px;
+  max-width: 32px;
 }
 </style>

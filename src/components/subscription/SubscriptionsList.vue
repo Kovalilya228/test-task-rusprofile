@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Subscription } from "@/types/subscription";
-import SubscriptionCard from "./SubscriptionCard.vue";
+import SubscriptionCard from "@/components/subscription/SubscriptionCard.vue";
 
 defineProps<{
   items: Subscription[];

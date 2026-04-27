@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useSubscriptionStore } from '@/store/subscription';
-import FunBar from './FunBar.vue';
+import FunBar from '@/components/ui/FunBar.vue';
 
 const store = useSubscriptionStore();
 </script>
@@ -41,7 +41,7 @@ const store = useSubscriptionStore();
             </p>
             <FunBar :percent="store.funPercent" />
             <p class="sidebar__content-subscribe">
-                <a class="sidebar__content-subscribe_link" href="#" @click.prevent>Subscribe</a>
+                <a class="sidebar__content-subscribe_link" href="#" @click.prevent="store.subscribeAll">Subscribe</a>
                 to all our fun sites to<br/>upgrade your fun progress
             </p>
         </div>
@@ -68,6 +68,8 @@ const store = useSubscriptionStore();
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100vh;
+  position: fixed;
   &__content {
     &-logo {
         margin-bottom: 64px;
