@@ -1,5 +1,107 @@
-# Vue 3 + TypeScript + Vite
+# Subscription Manager
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Описание
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+Тестовое приложение для управления подписками на сайты.
+
+Пользователь может:
+
+* подписываться и отписываться от отдельных сайтов
+* массово управлять подписками (subscribe/unsubscribe all)
+* отслеживать показатель **FUN YOU GET**, который зависит от количества активных подписок
+* подтверждать массовую отписку через модальное окно
+
+---
+
+## Технологии
+
+* Vue 3 (Composition API)
+* TypeScript
+* Pinia (state management)
+* SCSS
+* Vite (сборка проекта)
+
+---
+
+## Архитектура
+
+Проект построен с разделением ответственности:
+
+### Данные
+
+* DTO (данные из JSON) отделены от UI модели
+* реализован слой маппинга DTO → UI (нормализация данных)
+
+### Store (Pinia)
+
+* хранит только состояние и бизнес-логику
+* не содержит UI-состояния
+* использует `computed` для производных данных (например, `funPercent`)
+
+### Компоненты
+
+* разделены на:
+
+  * **UI (dumb)** — переиспользуемые компоненты (Spinner, FunBar)
+  * **Subscription** — бизнес-компоненты (SubscriptionCard, List)
+  * **Layout** — структура страницы (Sidebar, MobileHeader, MainContent)
+  * **Popup** — изолированный модальный компонент
+
+### UI Flow
+
+* управление модальным окном происходит на уровне страницы
+* Popup не зависит от store (через props/emits)
+
+---
+
+## Оптимизации
+
+* Lazy loading изображений (`loading="lazy"`)
+* Popup загружается асинхронно (`defineAsyncComponent`)
+* Уменьшен initial bundle (Popup вынесен в отдельный chunk)
+* Минимизация лишних перерендеров через `computed`
+* Плавная анимация прогресс-бара (`transition`)
+* Отсутствие лишних зависимостей (без UI-библиотек)
+
+---
+
+## 📱 Адаптив
+
+Реализована адаптивная верстка с переосмыслением UX:
+
+### Desktop
+
+* Sidebar с прогрессом и информацией
+* Grid карточек подписок
+
+### Mobile
+
+* Sticky header с прогрессом (замена sidebar)
+* Список подписок в одну колонку
+* Упрощённый интерфейс управления
+
+---
+
+## Особенности реализации
+
+* Используется строгая типизация (`SiteKey`, type guards)
+* Обработка некорректных данных из JSON
+* Компоненты не зависят напрямую от store (через props)
+* Централизованная логика подписок в store
+
+---
+
+## Установка и запуск
+
+```bash
+npm install
+npm run dev
+```
+
+---
+
+## Сборка проекта
+
+```bash
+npm run build
+```
